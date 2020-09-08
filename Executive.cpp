@@ -7,7 +7,8 @@ void run()
 {
 	int shipnum = 0;
 	int playerrows = 0;	
-	char playercols = '';
+	char playercols = ' ';
+	string direction = " ";
 
 	Board player1board;
 	Board enemy1board;
@@ -44,17 +45,19 @@ void run()
 
 				cout << "Player1, Where do you want to place 1X"<<i<<" on the grid? ((row(1-9) col(A-I))\n";
 				cin >> playerrows >> playercols;
+				cout << "And which direction?(up, right, down, or left)";
+				cin >> direction;
 
-				myplayer1.PlaceShip(i, playerrows, playercols, //bool); //check the position if vaild
+				myplayer1.PlaceShip(i, playerrows, playercols, direction); //check the position if vaild
 
-				if (myplayer1.PlaceShip)
+				if (myplayer1.PlaceShip(i, playerrows, playercols, direction))
 				{
 					player1board.updateBoard();   //place some ships in own board
 					myplayer1.PrintMyShip();	
 					myplayer1.PrintEnemyShip();
 				}
 
-				else if (!myplayer1.PlaceShip)
+				else if (!myplayer1.PlaceShip(i, playerrows, playercols, direction))
 				{
 					cout << "Invaild Position!\n ";
 					goto chooseShipPosition1;
@@ -85,17 +88,19 @@ void run()
 
 				cout << "Player2, Where do you want to place 1X" << i << " on the grid? ((row(1-9) col(A-I))\n";
 				cin >> playerrows >> playercols;
+				cout << "And which direction?(up, right, down, or left)";
+				cin >> direction;
 
-				myplayer2.PlaceShip(i, playerrows, playercols, //bool); //check the position if vaild
+				myplayer2.PlaceShip(i, playerrows, playercols, direction); //check the position if vaild
 
-				if (myplayer2.PlaceShip)
+				if (myplayer2.PlaceShip(i, playerrows, playercols, direction))
 				{
 					player2board.updateBoard();   //place some ships in own board
 					myplayer2.PrintMyShip();
 					myplayer2.PrintEnemyShip();
 				}
 
-				else if (!myplayer2.PlaceShip)
+				else if (!myplayer2.PlaceShip(i, playerrows, playercols, direction))
 				{
 					cout << "Invaild Position!\n ";
 					goto chooseShipPosition2;
@@ -145,7 +150,7 @@ void run()
 				}
 
 				player2board.updateBoard();		//update player1ship after player1 fire(player2 view will change in next round)
-
+				//myplayer2.updateMyship(playerrows, playercols);
 			}
 
 			else if (rounds % 2 = 0);
@@ -171,6 +176,7 @@ void run()
 				}
 
 				player1board.updateBoard();		//update player1ship after player2 fire(player1 view will change in next round)
+				//myplayer2.updateMyship(playerrows, playercols);
 			}
 
 			rounds++;
@@ -181,7 +187,7 @@ void run()
 				winner = true;
 			}
 
-			else ги numofhit2 == myplayer1.getShipnum())
+			else ( numofhit2 == myplayer1.getShipnum())
 			{
 				cout << "Player2 Wins!\n";
 				winner = true;
