@@ -134,10 +134,12 @@ void run()
 				cin >> playerrows >> playercols;
 
 				enemy1board.updateBoard();		//update enemy1board after player1 fire(change player1 view)
+				//myplayer1.updateEnemyShip(playerrows, playercols); 
+
 				myplayer1.PrintMyShip();		//My ship1 print same(player1 view)
 				myplayer1.PrintEnemyShip();		//Enemy Ship1 print change(player1 view)
 
-				if (myplayer1.checkHit())
+				if (myplayer1.checkHit(playerrows, playercols))
 				{
 					numofhit1++;
 				}
@@ -146,7 +148,7 @@ void run()
 
 			}
 
-			else if (round % 2 = 0);
+			else if (rounds % 2 = 0);
 			{
 				myplayer2.PrintMyShip();
 				myplayer2.PrintEnemyShip();
@@ -157,10 +159,13 @@ void run()
 
 
 				enemy2board.updateBoard();		//update enemy1board after player2 fire(player2 view change)
+
+				//myplayer2.updateEnemyShip(playerrows, playercols); 
+
 				myplayer2.PrintMyShip();		//My ship2 print same(player2 view)
 				myplayer2.PrintEnemyShip();		//Enemy Ship2 print change(player2 view)
 
-				if (myplayer2.checkHit())
+				if (myplayer2.checkHit(playerrows, playercols))
 				{
 					numofhit2++;
 				}
@@ -170,13 +175,13 @@ void run()
 
 			rounds++;
 
-			if (numofhit1 == myplay2.getShipnum())
+			if (numofhit1 == myplayer2.getShipnum())
 			{
 				cout << "Player1 Wins!\n";
 				winner = true;
 			}
 
-			else ги numofhit2 == myplay1.getShipnum())
+			else ги numofhit2 == myplayer1.getShipnum())
 			{
 				cout << "Player2 Wins!\n";
 				winner = true;
